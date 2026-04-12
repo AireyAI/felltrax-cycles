@@ -291,18 +291,10 @@
     .social-link:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
     .social-link svg { width: 18px; height: 18px; }
 
-    /* ─── Mobile video fallback ─────────────────────────── */
+    /* ─── Video fallback (only if video fails) ───────────── */
     .mobile-hero-fallback { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    .video-hidden .mobile-hero-fallback { display: block !important; }
-    .video-hidden video { display: none !important; }
-    @media (max-width: 1024px) and (pointer: coarse) {
-      .hero-bg video, #welcome video { display: none !important; }
-      .mobile-hero-fallback { display: block !important; }
-    }
-    @media (max-width: 768px) {
-      .hero-bg video, #welcome video { display: none !important; }
-      .mobile-hero-fallback { display: block !important; }
-    }
+    .video-failed .mobile-hero-fallback { display: block; }
+    .video-failed video { display: none; }
 
     /* ─── Reduced motion ────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
@@ -325,7 +317,7 @@
   <div id="welcome" style="position:fixed;inset:0;z-index:9998;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity 0.8s ease, visibility 0.8s ease;">
 
     <!-- Video Background -->
-    <video autoplay muted loop playsinline id="welcomeVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="welcomeVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:0;transition:opacity 1.2s ease;">
       <source src="images/welcome-video.mp4" type="video/mp4">
     </video>
     <img src="images/hero-bg.jpg" alt="" class="mobile-hero-fallback" aria-hidden="true" style="object-position:center 40%;">
@@ -385,10 +377,9 @@
     // Animate welcome elements in
     window.addEventListener('load', () => {
       const vid = document.getElementById('welcomeVideo');
-      vid.style.opacity = '1';
-      // Also fade in the fallback image if video is hidden
-      const welcomeFallback = document.querySelector('#welcome .mobile-hero-fallback');
-      if (welcomeFallback) welcomeFallback.style.opacity = '1';
+      // Video opacity is now handled by the tryPlay function
+      // But set it here too as a safety net
+      if (vid && !vid.paused) vid.style.opacity = '1';
       document.getElementById('welcomeLogo').style.opacity = '1';
       document.getElementById('welcomeLogo').style.transform = 'translateY(0)';
       document.getElementById('welcomeTitle').style.opacity = '1';
@@ -437,7 +428,7 @@
   <!-- ═══════════════════ HERO ═══════════════════ -->
   <section class="hero" aria-label="Hero">
     <div class="hero-bg" aria-hidden="true">
-      <video autoplay muted loop playsinline poster="images/hero-bg.jpg" preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;">
+      <video autoplay muted loop playsinline webkit-playsinline poster="images/hero-bg.jpg" preload="auto" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;">
         <source src="images/hero-video.mp4" type="video/mp4">
       </video>
       <img src="images/hero-bg.jpg" alt="" class="mobile-hero-fallback" aria-hidden="true">
@@ -798,36 +789,45 @@
   <script src="animations.js" defer></script>
 
   <script>
-    // ─── Video fallback for mobile/autoplay-blocked ────
+    // ─── Video: force play on all devices, fallback only on error ──
     (function() {
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      const isMobile = isTouchDevice || window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
-
       document.querySelectorAll('video').forEach(vid => {
         const parent = vid.parentElement;
-        const fallback = parent.querySelector('.mobile-hero-fallback');
-        if (!fallback) return;
 
-        if (isMobile) {
-          parent.classList.add('video-hidden');
-          return;
+        // Force muted (required for autoplay on mobile)
+        vid.muted = true;
+        vid.setAttribute('muted', '');
+        vid.setAttribute('playsinline', '');
+
+        // Try to play
+        function tryPlay() {
+          const p = vid.play();
+          if (p !== undefined) {
+            p.then(() => {
+              vid.style.opacity = '1';
+            }).catch(() => {
+              // Autoplay blocked — show fallback image
+              parent.classList.add('video-failed');
+            });
+          }
         }
 
-        // Desktop: try to play, fallback if blocked
-        const playPromise = vid.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            parent.classList.add('video-hidden');
-          });
+        // Play when ready
+        if (vid.readyState >= 2) {
+          tryPlay();
+        } else {
+          vid.addEventListener('canplay', tryPlay, { once: true });
         }
 
-        // Also catch stall/error events
-        vid.addEventListener('error', () => parent.classList.add('video-hidden'));
-        vid.addEventListener('stalled', () => {
-          setTimeout(() => {
-            if (vid.readyState < 2) parent.classList.add('video-hidden');
-          }, 3000);
-        });
+        // Fallback on error
+        vid.addEventListener('error', () => parent.classList.add('video-failed'));
+
+        // If video hasn't started after 5s, show fallback
+        setTimeout(() => {
+          if (vid.paused && vid.readyState < 2) {
+            parent.classList.add('video-failed');
+          }
+        }, 5000);
       });
     })();
 
