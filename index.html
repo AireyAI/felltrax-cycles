@@ -291,6 +291,15 @@
     .social-link:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
     .social-link svg { width: 18px; height: 18px; }
 
+    /* ─── Mobile video fallback ─────────────────────────── */
+    .mobile-hero-fallback { display: none; }
+    @media (max-width: 768px) {
+      .hero-bg video, #welcome video { display: none; }
+      .mobile-hero-fallback { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      #welcome .mobile-hero-fallback { object-position: center 40%; }
+      .hero-bg .mobile-hero-fallback { object-position: center 30%; }
+    }
+
     /* ─── Reduced motion ────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -315,6 +324,7 @@
     <video autoplay muted loop playsinline id="welcomeVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;">
       <source src="images/welcome-video.mp4" type="video/mp4">
     </video>
+    <img src="images/hero-bg.jpg" alt="" class="mobile-hero-fallback" aria-hidden="true" style="object-position:center 40%;">
 
     <!-- Overlay -->
     <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.3) 40%, rgba(10,10,10,0.7) 100%);z-index:1;"></div>
@@ -423,6 +433,7 @@
       <video autoplay muted loop playsinline poster="images/hero-bg.jpg" preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;">
         <source src="images/hero-video.mp4" type="video/mp4">
       </video>
+      <img src="images/hero-bg.jpg" alt="" class="mobile-hero-fallback" aria-hidden="true">
       <div class="hero-overlay"></div>
     </div>
 
@@ -780,6 +791,16 @@
   <script src="animations.js" defer></script>
 
   <script>
+    // ─── Video fallback for mobile/autoplay-blocked ────
+    document.querySelectorAll('video').forEach(vid => {
+      const fallback = vid.parentElement.querySelector('.mobile-hero-fallback');
+      if (!fallback) return;
+      vid.play().catch(() => {
+        vid.style.display = 'none';
+        fallback.style.display = 'block';
+      });
+    });
+
     // ─── Nav scroll behaviour ──────────────────────────
     let lastScroll = 0;
     const nav = document.querySelector('.nav');
