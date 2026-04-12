@@ -292,12 +292,16 @@
     .social-link svg { width: 18px; height: 18px; }
 
     /* ─── Mobile video fallback ─────────────────────────── */
-    .mobile-hero-fallback { display: none; }
+    .mobile-hero-fallback { display: none; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+    .video-hidden .mobile-hero-fallback { display: block !important; }
+    .video-hidden video { display: none !important; }
+    @media (max-width: 1024px) and (pointer: coarse) {
+      .hero-bg video, #welcome video { display: none !important; }
+      .mobile-hero-fallback { display: block !important; }
+    }
     @media (max-width: 768px) {
-      .hero-bg video, #welcome video { display: none; }
-      .mobile-hero-fallback { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-      #welcome .mobile-hero-fallback { object-position: center 40%; }
-      .hero-bg .mobile-hero-fallback { object-position: center 30%; }
+      .hero-bg video, #welcome video { display: none !important; }
+      .mobile-hero-fallback { display: block !important; }
     }
 
     /* ─── Reduced motion ────────────────────────────────── */
@@ -382,6 +386,9 @@
     window.addEventListener('load', () => {
       const vid = document.getElementById('welcomeVideo');
       vid.style.opacity = '1';
+      // Also fade in the fallback image if video is hidden
+      const welcomeFallback = document.querySelector('#welcome .mobile-hero-fallback');
+      if (welcomeFallback) welcomeFallback.style.opacity = '1';
       document.getElementById('welcomeLogo').style.opacity = '1';
       document.getElementById('welcomeLogo').style.transform = 'translateY(0)';
       document.getElementById('welcomeTitle').style.opacity = '1';
@@ -792,14 +799,37 @@
 
   <script>
     // ─── Video fallback for mobile/autoplay-blocked ────
-    document.querySelectorAll('video').forEach(vid => {
-      const fallback = vid.parentElement.querySelector('.mobile-hero-fallback');
-      if (!fallback) return;
-      vid.play().catch(() => {
-        vid.style.display = 'none';
-        fallback.style.display = 'block';
+    (function() {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isMobile = isTouchDevice || window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 768;
+
+      document.querySelectorAll('video').forEach(vid => {
+        const parent = vid.parentElement;
+        const fallback = parent.querySelector('.mobile-hero-fallback');
+        if (!fallback) return;
+
+        if (isMobile) {
+          parent.classList.add('video-hidden');
+          return;
+        }
+
+        // Desktop: try to play, fallback if blocked
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            parent.classList.add('video-hidden');
+          });
+        }
+
+        // Also catch stall/error events
+        vid.addEventListener('error', () => parent.classList.add('video-hidden'));
+        vid.addEventListener('stalled', () => {
+          setTimeout(() => {
+            if (vid.readyState < 2) parent.classList.add('video-hidden');
+          }, 3000);
+        });
       });
-    });
+    })();
 
     // ─── Nav scroll behaviour ──────────────────────────
     let lastScroll = 0;
