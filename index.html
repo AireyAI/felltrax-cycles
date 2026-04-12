@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felltrax Cycles — Mountain Bikes, Carlisle | Lake District Trails</title>
+  <meta name="description" content="Felltrax Cycles — premium mountain bikes and expert servicing in Carlisle. Trail, enduro, downhill and e-MTB specialists. Ride the Lake District fells.">
+  <link rel="canonical" href="https://www.felltraxcycles.co.uk/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Felltrax Cycles — Mountain Bikes, Carlisle">
+  <meta property="og:description" content="Premium mountain bikes and expert servicing in the heart of Carlisle. Trail, enduro, downhill and e-MTB specialists.">
+  <meta property="og:image" content="images/hero-bg.jpg">
+  <meta property="og:url" content="https://www.felltraxcycles.co.uk/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Felltrax Cycles">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Felltrax Cycles — Mountain Bikes, Carlisle">
+  <meta name="twitter:description" content="Premium mountain bikes and expert servicing in the heart of Carlisle.">
+  <meta name="twitter:image" content="images/hero-bg.jpg">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Preload hero image -->
+  <link rel="preload" href="images/hero-bg.jpg" as="image" fetchpriority="high">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B',
+            'brand-dark': '#9ACC1A',
+            'brand-light': '#D6FF6B',
+            fell: {
+              950: '#0A0A0A',
+              900: '#111111',
+              850: '#161616',
+              800: '#1A1A1A',
+              700: '#242424',
+              600: '#333333',
+              500: '#555555',
+              400: '#777777',
+              300: '#999999',
+              200: '#BBBBBB',
+              100: '#E0E0E0',
+            },
+            mud: '#8B6914',
+            moss: '#2D5016',
+            rock: '#6B6B6B',
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Felltrax Cycles",
+    "description": "Premium mountain bike sales and expert servicing in Carlisle, gateway to the Lake District.",
+    "url": "https://www.felltraxcycles.co.uk",
+    "telephone": "+441234567890",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13 Chapel Pl",
+      "addressLocality": "Carlisle",
+      "postalCode": "CA2 5DF",
+      "addressCountry": "GB"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "16:00" }
+    ],
+    "image": "images/hero-bg.jpg",
+    "priceRange": "££-£££"
+  }
+  </script>
+
+  <style>
+    /* ─── CSS Reset & Base ──────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body { font-family: 'DM Sans', sans-serif; background: #0A0A0A; color: #E0E0E0; line-height: 1.7; overflow-x: hidden; }
+
+    /* ─── Design Tokens ─────────────────────────────────── */
+    :root {
+      --brand: #C4FF2B;
+      --brand-rgb: 196, 255, 43;
+      --brand-dark: #9ACC1A;
+      --surface-base: #0A0A0A;
+      --surface-raised: #111111;
+      --surface-overlay: #1A1A1A;
+      --surface-float: #242424;
+      --text-primary: #E0E0E0;
+      --text-secondary: #A8A8A8;
+      --text-muted: #8A8A8A;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.16);
+      --shadow-brand: 0 4px 24px rgba(196, 255, 43, 0.15);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --z-sticky: 200;
+      --z-modal: 400;
+    }
+
+    /* ─── Noise Texture Overlay ─────────────────���───────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ─── Typography ────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.1; }
+
+    /* ─── Nav ───────────────────────────────────────────── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: var(--z-sticky); padding: 1.25rem 2rem; transition: background 0.4s ease, backdrop-filter 0.4s ease, transform 0.3s ease; }
+    .nav.scrolled { background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav.hidden { transform: translateY(-100%); }
+    .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; }
+    .nav-logo span { color: var(--brand); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: #CCCCCC; text-decoration: none; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s ease; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--brand); }
+    .nav-cta { background: var(--brand); color: #0A0A0A; padding: 0.6rem 1.5rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-brand); }
+    .nav-cta:active { transform: translateY(0) scale(0.98); }
+
+    /* Mobile menu */
+    .menu-toggle { display: none; background: none; border: none; color: white; cursor: pointer; padding: 0.5rem; }
+    .menu-toggle svg { width: 28px; height: 28px; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,10,0.98); backdrop-filter: blur(16px); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+      .nav-cta.open { display: inline-block; position: absolute; top: calc(100% + 200px); left: 2rem; }
+    }
+
+    /* ─── Hero ──────────────────────────────────────────── */
+    .hero { position: relative; min-height: 100dvh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.55) 40%, rgba(10,10,10,0.3) 70%, rgba(10,10,10,0.6) 100%); }
+    .hero-overlay::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: linear-gradient(to bottom, transparent, #0A0A0A); }
+    .hero-content { position: relative; z-index: 1; max-width: 780px; padding: 2rem; margin-left: 8%; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand); margin-bottom: 1.5rem; }
+    .hero-eyebrow::before { content: ''; width: 40px; height: 2px; background: var(--brand); }
+    .hero-headline { font-size: clamp(3rem, 7vw + 1rem, 6rem); font-weight: 700; color: white; margin-bottom: 1.25rem; text-wrap: balance; }
+    .hero-headline .highlight { color: var(--brand); display: inline-block; }
+    .hero-sub { font-size: clamp(1rem, 1.5vw, 1.25rem); color: rgba(255,255,255,0.8); max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7; }
+    .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--brand); color: #0A0A0A; padding: 1rem 2.25rem; font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; border: none; cursor: pointer; position: relative; overflow: hidden; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .btn-primary::after { content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); transition: left 0.5s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-brand); }
+    .btn-primary:hover::after { left: 150%; }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+    .btn-primary:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: white; padding: 1rem 2.25rem; font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease; }
+    .btn-ghost:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+    .btn-ghost:active { transform: translateY(0); }
+    .btn-ghost:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+    /* Scroll invite */
+    .scroll-invite { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; z-index: 2; }
+    .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); transform: rotate(45deg); animation: scrollBounce 1.5s ease infinite; }
+    @keyframes scrollBounce { 0%, 100% { transform: rotate(45deg) translateY(0); } 50% { transform: rotate(45deg) translateY(6px); } }
+
+    /* ─── Section spacing ───────────────────────────────── */
+    .section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-label { font-family: 'Oswald', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--brand); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-label::before { content: ''; width: 30px; height: 2px; background: var(--brand); }
+    .section-title { font-size: clamp(2rem, 4vw, 3.5rem); color: white; margin-bottom: 1rem; }
+    .section-subtitle { font-size: 1.05rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 3rem; }
+
+    /* ─── Bikes Grid ────────────────────────────────────── */
+    .bikes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .bike-card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; cursor: pointer; }
+    .bike-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(196,255,43,0.1); border-color: rgba(196,255,43,0.2); }
+    .bike-card:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .bike-card-img { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .bike-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .bike-card:hover .bike-card-img img { transform: scale(1.05); }
+    .bike-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.6), transparent 50%); }
+    .bike-card-body { padding: 1.5rem; }
+    .bike-card-category { font-family: 'Oswald', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 0.5rem; }
+    .bike-card-name { font-family: 'Oswald', sans-serif; font-size: 1.35rem; color: white; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .bike-card-desc { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6; }
+    .bike-card-price { font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: var(--brand); font-weight: 600; }
+    .bike-card-price span { font-size: 0.8rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+    /* ─── Trails ─────────────────────────────────────────── */
+    .trails-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+    .trail-card { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; cursor: pointer; }
+    .trail-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .trail-card:hover img { transform: scale(1.05); }
+    .trail-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.3) 50%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; }
+    .trail-card-name { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: white; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .trail-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .trail-badge { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .trail-badge.difficulty-red { background: rgba(239,68,68,0.2); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+    .trail-badge.difficulty-blue { background: rgba(59,130,246,0.2); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
+    .trail-badge.difficulty-black { background: rgba(255,255,255,0.1); color: #E0E0E0; border: 1px solid rgba(255,255,255,0.2); }
+    .trail-badge.info { background: rgba(196,255,43,0.1); color: var(--brand); border: 1px solid rgba(196,255,43,0.2); }
+
+    /* ─── Stats ──────────────────────────────────────────── */
+    .stats-section { background: var(--surface-raised); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    .stat-item { padding: 2rem 1rem; }
+    .stat-number { font-family: 'Oswald', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; color: var(--brand); line-height: 1; margin-bottom: 0.5rem; font-variant-numeric: tabular-nums; }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ─── Gallery ────────────────────────────────────────── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 0.75rem; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 6px; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,10,10,0.4), transparent 40%); opacity: 0; transition: opacity 0.3s ease; }
+    .gallery-item:hover::after { opacity: 1; }
+    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-item:nth-child(2) { aspect-ratio: 1/1; }
+    .gallery-item:nth-child(3) { aspect-ratio: 1/1; }
+    .gallery-item:nth-child(4) { grid-column: span 2; aspect-ratio: 2/1; }
+    @media (max-width: 640px) { .gallery-grid { grid-template-columns: 1fr; } .gallery-item:nth-child(1), .gallery-item:nth-child(4) { grid-column: span 1; aspect-ratio: 16/9; } .gallery-item:nth-child(2), .gallery-item:nth-child(3) { aspect-ratio: 16/9; } }
+
+    /* ─── Contact ────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info-item { display: flex; gap: 1rem; margin-bottom: 2rem; }
+    .contact-icon { width: 48px; height: 48px; background: var(--surface-overlay); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .contact-icon svg { width: 20px; height: 20px; color: var(--brand); }
+    .contact-info-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.25rem; }
+    .contact-info-value { color: white; font-weight: 500; }
+    .contact-info-value a { color: white; text-decoration: none; transition: color 0.2s; }
+    .contact-info-value a:hover { color: var(--brand); }
+    .map-container { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); aspect-ratio: 16/10; }
+    .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.8) brightness(0.8) contrast(1.1); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500; }
+    .form-input { background: var(--surface-overlay); border: 1px solid var(--border); border-radius: 6px; padding: 0.85rem 1rem; color: white; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+    .form-input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(196,255,43,0.1); }
+    .form-input::placeholder { color: var(--text-muted); }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+
+    /* ─── Footer ─────────────────────────────────────────── */
+    .footer { background: var(--surface-raised); border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand-desc { color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem; max-width: 300px; line-height: 1.7; }
+    .footer-heading { font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 600; color: white; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.25rem; }
+    h3.footer-heading { font-size: 0.85rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--brand); }
+    .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+    .newsletter-input { flex: 1; background: var(--surface-overlay); border: 1px solid var(--border); border-radius: 4px; padding: 0.7rem 1rem; color: white; font-size: 0.9rem; }
+    .newsletter-input:focus { outline: none; border-color: var(--brand); }
+    .newsletter-btn { background: var(--brand); color: #0A0A0A; border: none; padding: 0.7rem 1.25rem; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; cursor: pointer; transition: transform 0.15s ease; }
+    .newsletter-btn:hover { transform: translateY(-1px); }
+    .footer-bottom { border-top: 1px solid var(--border); padding: 2rem 0; margin-top: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: 0.8rem; }
+    .social-links { display: flex; gap: 1rem; }
+    .social-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: var(--surface-overlay); border: 1px solid var(--border); color: var(--text-secondary); transition: border-color 0.2s, color 0.2s, transform 0.2s; }
+    .social-link:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; }
+
+    /* ─── Reduced motion ────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ─── Selection ─────────────────────────────────────── */
+    ::selection { background: rgba(196,255,43,0.3); color: white; }
+
+    /* ─── Scrollbar ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--surface-base); }
+    ::-webkit-scrollbar-thumb { background: var(--surface-float); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ WELCOME SCREEN ═══════════════════ -->
+  <div id="welcome" style="position:fixed;inset:0;z-index:9998;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity 0.8s ease, visibility 0.8s ease;">
+
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline id="welcomeVideo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease;">
+      <source src="images/welcome-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Overlay -->
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.3) 40%, rgba(10,10,10,0.7) 100%);z-index:1;"></div>
+
+    <!-- Vignette -->
+    <div style="position:absolute;inset:0;box-shadow:inset 0 0 200px rgba(0,0,0,0.8);z-index:2;pointer-events:none;"></div>
+
+    <!-- Content -->
+    <div style="position:relative;z-index:3;text-align:center;padding:2rem;">
+
+      <!-- Logo mark -->
+      <div id="welcomeLogo" style="opacity:0;transform:translateY(20px);transition:opacity 0.8s ease 0.3s, transform 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.3s;">
+        <div style="width:80px;height:80px;margin:0 auto 2rem;border:3px solid #C4FF2B;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C4FF2B" stroke-width="1.5">
+            <path d="M12 2L2 19h20L12 2z"/>
+            <line x1="12" y1="8" x2="12" y2="14"/>
+            <circle cx="12" cy="16" r="0.5" fill="#C4FF2B"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h1 id="welcomeTitle" style="font-family:'Oswald',sans-serif;font-size:clamp(3rem,8vw,7rem);font-weight:700;color:white;text-transform:uppercase;letter-spacing:0.08em;line-height:1;margin-bottom:0.5rem;opacity:0;transform:translateY(30px);transition:opacity 0.8s ease 0.6s, transform 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.6s;">
+        FELL<span style="color:#C4FF2B;">TRAX</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p id="welcomeSub" style="font-family:'DM Sans',sans-serif;font-size:clamp(0.85rem,1.5vw,1.1rem);color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.25em;margin-bottom:3rem;opacity:0;transform:translateY(20px);transition:opacity 0.8s ease 0.9s, transform 0.8s cubic-bezier(0.34,1.56,0.64,1) 0.9s;">
+        Born to ride the fells
+      </p>
+
+      <!-- Enter button -->
+      <button id="enterSite" onclick="dismissWelcome()" style="opacity:0;transform:translateY(20px);transition:opacity 0.8s ease 1.2s, transform 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.2s;background:transparent;border:2px solid #C4FF2B;color:#C4FF2B;padding:1rem 3rem;font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;cursor:pointer;position:relative;overflow:hidden;" aria-label="Enter the Felltrax Cycles website">
+        <span style="position:relative;z-index:1;">Enter Site</span>
+        <div style="position:absolute;inset:0;background:#C4FF2B;transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);z-index:0;"></div>
+      </button>
+
+      <!-- Scroll hint -->
+      <p id="welcomeScroll" style="position:absolute;bottom:-120px;left:50%;transform:translateX(-50%);font-size:0.7rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;opacity:0;transition:opacity 0.8s ease 1.6s;font-family:'DM Sans',sans-serif;">
+        Or scroll down
+      </p>
+    </div>
+  </div>
+
+  <style>
+    #enterSite:hover > div { transform: scaleX(1); }
+    #enterSite:hover { color: #0A0A0A; }
+    #enterSite:focus-visible { outline: 2px solid #C4FF2B; outline-offset: 4px; }
+    #enterSite:active { transform: scale(0.97) !important; }
+    #welcome.dismiss { opacity: 0; visibility: hidden; pointer-events: none; }
+  </style>
+
+  <script>
+    // Animate welcome elements in
+    window.addEventListener('load', () => {
+      const vid = document.getElementById('welcomeVideo');
+      vid.style.opacity = '1';
+      document.getElementById('welcomeLogo').style.opacity = '1';
+      document.getElementById('welcomeLogo').style.transform = 'translateY(0)';
+      document.getElementById('welcomeTitle').style.opacity = '1';
+      document.getElementById('welcomeTitle').style.transform = 'translateY(0)';
+      document.getElementById('welcomeSub').style.opacity = '1';
+      document.getElementById('welcomeSub').style.transform = 'translateY(0)';
+      document.getElementById('enterSite').style.opacity = '1';
+      document.getElementById('enterSite').style.transform = 'translateY(0)';
+      document.getElementById('welcomeScroll').style.opacity = '1';
+    });
+
+    function dismissWelcome() {
+      const welcome = document.getElementById('welcome');
+      welcome.classList.add('dismiss');
+      document.body.style.overflow = '';
+      setTimeout(() => { welcome.remove(); }, 900);
+    }
+
+    // Also dismiss on scroll
+    let welcomeDismissed = false;
+    window.addEventListener('scroll', () => {
+      if (!welcomeDismissed && window.scrollY > 50) {
+        welcomeDismissed = true;
+        dismissWelcome();
+      }
+    }, { passive: true });
+  </script>
+
+  <!-- ═══════════════════ NAV ═══════════════════ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Felltrax Cycles home">FELL<span>TRAX</span></a>
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#bikes">Bikes</a></li>
+        <li><a href="#trails">Trails</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta" data-magnetic>Visit Us</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true">
+      <video autoplay muted loop playsinline poster="images/hero-bg.jpg" preload="metadata" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;">
+        <source src="images/hero-video.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-appear>Carlisle's Mountain Bike Specialists</p>
+      <h1 class="hero-headline" data-split="words">Born To Ride The <span class="highlight">Fells</span></h1>
+      <p class="hero-sub" data-appear data-appear-delay="0.3">Premium mountain bikes built for the rugged trails of the Lake District. Expert fitting, servicing, and local trail knowledge since day one.</p>
+      <div class="hero-cta-group" data-appear data-appear-delay="0.5">
+        <a href="#bikes" class="btn-primary" data-magnetic>
+          Explore Bikes
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-ghost" data-magnetic>Find Us</a>
+      </div>
+    </div>
+
+    <div class="scroll-invite" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BIKES ═══════════════════ -->
+  <section id="bikes" class="section" style="background: var(--surface-base);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">What We Ride</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Built For Every <span style="color: var(--brand);">Trail</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">From flowing singletrack to gnarly downhill. We stock bikes that handle whatever the fells throw at you.</p>
+
+      <div class="bikes-grid" data-stagger-parent>
+        <!-- Trail -->
+        <div class="bike-card" data-stagger-child data-tilt tabindex="0" role="article" aria-label="Trail bikes">
+          <div class="bike-card-img">
+            <img src="images/bike-trail.jpg" alt="Full suspension trail mountain bike with lime green accents" loading="lazy" width="800" height="600">
+          </div>
+          <div class="bike-card-body">
+            <p class="bike-card-category">All-Rounder</p>
+            <h3 class="bike-card-name">Trail</h3>
+            <p class="bike-card-desc">Versatile 130-150mm travel machines. Climbs like a goat, descends with confidence. Your do-everything bike.</p>
+            <p class="bike-card-price">From £1,899 <span>/ frame up</span></p>
+          </div>
+        </div>
+
+        <!-- Enduro -->
+        <div class="bike-card" data-stagger-child data-tilt tabindex="0" role="article" aria-label="Enduro bikes">
+          <div class="bike-card-img">
+            <img src="images/bike-enduro.jpg" alt="Aggressive enduro mountain bike with orange accents" loading="lazy" width="800" height="600">
+          </div>
+          <div class="bike-card-body">
+            <p class="bike-card-category">Big Mountain</p>
+            <h3 class="bike-card-name">Enduro</h3>
+            <p class="bike-card-desc">160-180mm of plush travel. Aggressive geometry for when the trails get rowdy. Pedal up, smash down.</p>
+            <p class="bike-card-price">From £2,499 <span>/ frame up</span></p>
+          </div>
+        </div>
+
+        <!-- Downhill -->
+        <div class="bike-card" data-stagger-child data-tilt tabindex="0" role="article" aria-label="Downhill bikes">
+          <div class="bike-card-img">
+            <img src="images/bike-downhill.jpg" alt="Heavy duty downhill mountain bike with red accents" loading="lazy" width="800" height="600">
+          </div>
+          <div class="bike-card-body">
+            <p class="bike-card-category">Gravity</p>
+            <h3 class="bike-card-name">Downhill</h3>
+            <p class="bike-card-desc">200mm+ dual crown beasts. Built for lift-accessed carnage and the steepest, roughest lines you can find.</p>
+            <p class="bike-card-price">From £2,999 <span>/ frame up</span></p>
+          </div>
+        </div>
+
+        <!-- E-MTB -->
+        <div class="bike-card" data-stagger-child data-tilt tabindex="0" role="article" aria-label="Electric mountain bikes">
+          <div class="bike-card-img">
+            <img src="images/bike-emtb.jpg" alt="Electric mountain bike with integrated battery" loading="lazy" width="800" height="600">
+          </div>
+          <div class="bike-card-body">
+            <p class="bike-card-category">Electric</p>
+            <h3 class="bike-card-name">E-MTB</h3>
+            <p class="bike-card-desc">More laps, more trails, more fun. Integrated motors with natural ride feel. The fells without limits.</p>
+            <p class="bike-card-price">From £3,499 <span>/ frame up</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TRAILS ═══════════════════ -->
+  <section id="trails" class="section" style="background: var(--surface-raised);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">Local Knowledge</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Trails On Our <span style="color: var(--brand);">Doorstep</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">We ride these trails every week. Ask us for route tips, conditions, and the lines the locals know.</p>
+
+      <div class="trails-grid" data-stagger-parent>
+        <!-- Whinlatter -->
+        <div class="trail-card" data-stagger-child data-reveal="fade-up" role="article" aria-label="Whinlatter Forest trail">
+          <img src="images/trail-whinlatter.jpg" alt="Aerial view of Whinlatter Forest mountain bike trail" loading="lazy" width="800" height="450">
+          <div class="trail-card-overlay">
+            <h3 class="trail-card-name">Whinlatter Forest</h3>
+            <div class="trail-meta">
+              <span class="trail-badge difficulty-red">Red Grade</span>
+              <span class="trail-badge info">19km</span>
+              <span class="trail-badge info">40 min drive</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grizedale -->
+        <div class="trail-card" data-stagger-child data-reveal="fade-up" role="article" aria-label="Grizedale Forest trail">
+          <img src="images/trail-grizedale.jpg" alt="Mountain biker riding through Grizedale Forest" loading="lazy" width="800" height="450">
+          <div class="trail-card-overlay">
+            <h3 class="trail-card-name">Grizedale Forest</h3>
+            <div class="trail-meta">
+              <span class="trail-badge difficulty-blue">Blue & Red</span>
+              <span class="trail-badge info">16km</span>
+              <span class="trail-badge info">55 min drive</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skiddaw -->
+        <div class="trail-card" data-stagger-child data-reveal="fade-up" role="article" aria-label="Skiddaw trail">
+          <img src="images/trail-skiddaw.jpg" alt="Dramatic Skiddaw mountain landscape with trail" loading="lazy" width="800" height="450">
+          <div class="trail-card-overlay">
+            <h3 class="trail-card-name">Skiddaw</h3>
+            <div class="trail-meta">
+              <span class="trail-badge difficulty-black">Expert</span>
+              <span class="trail-badge info">Natural Trails</span>
+              <span class="trail-badge info">35 min drive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STATS ═══════════════════ -->
+  <section class="section stats-section">
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-item" data-reveal="fade-up">
+          <div class="stat-number" data-counter="8" data-counter-suffix="+">0</div>
+          <div class="stat-label">Years Trading</div>
+        </div>
+        <div class="stat-item" data-reveal="fade-up" data-reveal-delay="0.1">
+          <div class="stat-number" data-counter="2500" data-counter-suffix="+">0</div>
+          <div class="stat-label">Bikes Sold</div>
+        </div>
+        <div class="stat-item" data-reveal="fade-up" data-reveal-delay="0.2">
+          <div class="stat-number" data-counter="4.9">0</div>
+          <div class="stat-label">Google Rating</div>
+        </div>
+        <div class="stat-item" data-reveal="fade-up" data-reveal-delay="0.3">
+          <div class="stat-number" data-counter="50" data-counter-suffix="+">0</div>
+          <div class="stat-label">Trails Nearby</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ GALLERY ═══════════════════ -->
+  <section id="gallery" class="section" style="background: var(--surface-base);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">The Life</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Mud, Gears & <span style="color: var(--brand);">Good Times</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">From the workshop to the trails. This is what we're about.</p>
+
+      <div class="gallery-grid" data-stagger-parent>
+        <div class="gallery-item" data-stagger-child>
+          <img src="images/gallery-group.jpg" alt="Group of mountain bikers at fell summit" loading="lazy" width="800" height="400">
+        </div>
+        <div class="gallery-item" data-stagger-child>
+          <img src="images/gallery-wheel.jpg" alt="Close up of muddy mountain bike wheel" loading="lazy" width="400" height="400">
+        </div>
+        <div class="gallery-item" data-stagger-child>
+          <img src="images/gallery-workshop.jpg" alt="Felltrax Cycles workshop interior" loading="lazy" width="400" height="400">
+        </div>
+        <div class="gallery-item" data-stagger-child>
+          <img src="images/hero-bg.jpg" alt="Mountain biker jumping on Lake District trail" loading="lazy" width="800" height="400">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section id="contact" class="section" style="background: var(--surface-raised);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">Get In Touch</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Find <span style="color: var(--brand);">Us</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">Drop in, give us a ring, or send a message. We're always happy to talk bikes.</p>
+
+      <div class="contact-grid" data-reveal="fade-up" data-reveal-delay="0.3">
+        <div>
+          <!-- Address -->
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Address</p>
+              <p class="contact-info-value">13 Chapel Pl, Carlisle CA2 5DF<br>United Kingdom</p>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Opening Hours</p>
+              <p class="contact-info-value">
+                Mon – Fri: 9:00 – 17:30<br>
+                Saturday: 9:00 – 17:00<br>
+                Sunday: 10:00 – 16:00
+              </p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Phone</p>
+              <p class="contact-info-value"><a href="tel:+441234567890">01234 567 890</a></p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-info-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Email</p>
+              <p class="contact-info-value"><a href="mailto:info@felltraxcycles.co.uk">info@felltraxcycles.co.uk</a></p>
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-container" style="margin-top: 1rem;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2281.5!2d-2.9407!3d54.8925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487d1f2a9fbfffff%3A0x0!2s13+Chapel+Pl%2C+Carlisle+CA2+5DF!5e0!3m2!1sen!2suk!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Felltrax Cycles location on map"></iframe>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" name="subject" class="form-input" required>
+                <option value="" disabled selected>What's this about?</option>
+                <option value="bikes">Buying a bike</option>
+                <option value="servicing">Servicing & repairs</option>
+                <option value="fitting">Bike fitting</option>
+                <option value="trails">Trail advice</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" class="form-input" placeholder="Tell us what you need..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" data-magnetic style="align-self: flex-start;">
+              Send Message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer section" style="padding-top: 4rem; padding-bottom: 2rem;">
+    <div class="section-inner">
+      <div class="footer-grid">
+        <!-- Brand -->
+        <div>
+          <a href="#" class="nav-logo" style="font-size: 1.75rem;">FELL<span>TRAX</span></a>
+          <p class="footer-brand-desc">Carlisle's home for mountain bikes. Premium rides, expert servicing, and the local trail knowledge to match.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="footer-heading">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="#bikes">Bikes</a></li>
+            <li><a href="#trails">Local Trails</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h3 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="#contact">Bike Sales</a></li>
+            <li><a href="#contact">Repairs</a></li>
+            <li><a href="#contact">Bike Fitting</a></li>
+            <li><a href="#contact">Suspension Setup</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+          <h3 class="footer-heading">Stay In The Loop</h4>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem;">Trail conditions, new stock, events.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value='Subscribed!'; this.querySelector('input').disabled=true;">
+            <input type="email" placeholder="Email" class="newsletter-input" required autocomplete="email" aria-label="Email for newsletter">
+            <button type="submit" class="newsletter-btn" data-magnetic>Go</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Felltrax Cycles. All rights reserved.</p>
+        <div class="social-links">
+          <!-- Instagram -->
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </a>
+          <!-- Strava -->
+          <a href="#" class="social-link" aria-label="Strava">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- AireyAI Animation Toolkit -->
+  <script src="animations.js" defer></script>
+
+  <script>
+    // ─── Nav scroll behaviour ──────────────────────────
+    let lastScroll = 0;
+    const nav = document.querySelector('.nav');
+
+    function handleNavScroll() {
+      const current = window.scrollY;
+      if (current <= 80) {
+        nav.classList.remove('scrolled', 'hidden');
+      } else if (current > lastScroll + 10) {
+        nav.classList.add('hidden');
+      } else if (current < lastScroll - 10) {
+        nav.classList.remove('hidden');
+        nav.classList.add('scrolled');
+      }
+      lastScroll = current;
+    }
+
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => { handleNavScroll(); scrollTicking = false; });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+
+    // ─── Mobile menu ───────────────────────────────────
+    function toggleMenu() {
+      const links = document.getElementById('navLinks');
+      const toggle = document.querySelector('.menu-toggle');
+      const isOpen = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    }
+
+    // ─── Form handler ──────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = 'Sent! ✓';
+      btn.style.background = '#22c55e';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // ─── Smooth scroll for anchor links ────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const links = document.getElementById('navLinks');
+          if (links.classList.contains('open')) links.classList.remove('open');
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
