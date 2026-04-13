@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Trail Not Found | Felltrax Cycles</title>
+  <meta name="description" content="Page not found. Looks like you've gone off-trail.">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <section style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:var(--surface-base);">
+    <div style="max-width:600px;">
+      <!-- Mountain illustration -->
+      <div style="margin-bottom:2rem;">
+        <svg width="200" height="120" viewBox="0 0 200 120" fill="none" style="margin:0 auto;">
+          <path d="M0 120L60 30L90 70L120 20L160 80L200 120H0Z" fill="var(--surface-overlay)" stroke="var(--border)" stroke-width="1"/>
+          <path d="M120 20L130 35L110 35Z" fill="var(--surface-float)"/>
+          <circle cx="160" cy="25" r="12" fill="var(--brand)" opacity="0.3"/>
+          <path d="M70 120L100 60L130 120" fill="var(--surface-raised)" stroke="var(--brand)" stroke-width="1" opacity="0.5"/>
+          <!-- Bike tracks going off edge -->
+          <path d="M80 110Q90 100 95 105Q100 110 110 100Q120 90 130 105" stroke="var(--brand)" stroke-width="2" fill="none" stroke-dasharray="4 4" opacity="0.6"/>
+        </svg>
+      </div>
+
+      <p style="font-family:Oswald,sans-serif;font-size:0.8rem;color:var(--brand);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:0.75rem;">Error 404</p>
+      <h1 style="font-family:Oswald,sans-serif;font-size:clamp(3rem,8vw,6rem);color:var(--heading-color);text-transform:uppercase;line-height:1;margin-bottom:1rem;">Trail Not<br><span style="color:var(--brand);">Found</span></h1>
+      <p style="color:var(--text-secondary);font-size:1.1rem;line-height:1.7;margin-bottom:2.5rem;">Looks like you've gone off-piste. This trail doesn't exist — or maybe it's been re-routed. Let's get you back on track.</p>
+
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="index.html" class="btn-primary" data-magnetic>
+          Back To Home
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="shop.html" class="btn-ghost" data-magnetic>Browse Bikes</a>
+        <a href="trails.html" class="btn-ghost" data-magnetic>Find Trails</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/ui-extras.js" defer></script>
+
+</body>
+</html>

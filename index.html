@@ -24,6 +24,11 @@
   <!-- Theme -->
   <meta name="theme-color" content="#0A0A0A">
 
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -260,8 +265,9 @@
         </div>
       </div>
 
-      <div style="text-align:center;margin-top:3rem;" data-reveal="fade-up">
+      <div style="text-align:center;margin-top:3rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;" data-reveal="fade-up">
         <a href="shop.html" class="btn-primary" data-magnetic>View All Bikes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <button class="btn-ghost" data-magnetic data-open-quiz>Find Your Size</button>
       </div>
     </div>
   </section>
@@ -368,6 +374,16 @@
     </div>
   </section>
 
+  <!-- ═══════════════════ REVIEWS ═══════════════════ -->
+  <section class="section" style="background: var(--surface-raised);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">What Riders Say</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Customer <span style="color: var(--brand);">Reviews</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">Don't just take our word for it. Here's what the locals think.</p>
+      <div id="reviewsWidget" data-reveal="fade-up" data-reveal-delay="0.3"></div>
+    </div>
+  </section>
+
   <!-- ═══════════════════ CONTACT ═══════════════════ -->
   <section id="contact" class="section" style="background: var(--surface-raised);">
     <div class="section-inner">
@@ -470,12 +486,27 @@
   <!-- Footer placeholder -->
   <div id="footer-placeholder"></div>
 
+  <!-- ═══════════════════ SIZING QUIZ MODAL ═══════════════════ -->
+  <div id="sizingQuizModal" class="modal-overlay">
+    <div class="modal-box" style="max-width:600px;">
+      <button class="quiz-close modal-close" aria-label="Close quiz">&times;</button>
+      <div class="quiz-progress" style="height:3px;background:var(--surface-overlay);border-radius:2px;margin-bottom:2rem;overflow:hidden;">
+        <div class="quiz-progress-fill" style="height:100%;background:var(--brand);width:0;transition:width 0.4s ease;border-radius:2px;"></div>
+      </div>
+      <h2 class="quiz-title" style="font-family:Oswald,sans-serif;font-size:1.5rem;color:var(--heading-color);text-transform:uppercase;text-align:center;margin-bottom:1.5rem;"></h2>
+      <div class="quiz-body"></div>
+    </div>
+  </div>
+
   <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="animations.js" defer></script>
   <script src="js/includes.js"></script>
   <script src="js/nav.js" defer></script>
+  <script src="js/reviews.js" defer></script>
+  <script src="js/sizing-quiz.js" defer></script>
+  <script src="js/ui-extras.js" defer></script>
 
   <script>
     // ─── Video: force play on all devices, fallback only on error ──
@@ -517,6 +548,15 @@
         btn.disabled = false;
         e.target.reset();
       }, 3000);
+    }
+  </script>
+
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js');
+      });
     }
   </script>
 

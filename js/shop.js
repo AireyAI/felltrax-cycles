@@ -35,6 +35,10 @@
           '<span style="font-size:0.75rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.25rem 0.6rem;border-radius:4px;">' + bike.weight + '</span>' +
         '</div>' +
         '<p class="bike-card-price">' + bike.priceLabel + ' <span>' + bike.priceSuffix + '</span></p>' +
+        '<button class="compare-toggle" data-compare="' + bike.id + '" aria-label="Add to comparison" style="background:var(--surface-overlay);border:1px solid var(--border);color:var(--text-muted);padding:0.4rem 0.8rem;font-family:Oswald,sans-serif;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.4rem;">' +
+          '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>' +
+          'Compare' +
+        '</button>' +
       '</div>';
 
     // Click to go to product page

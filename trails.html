@@ -199,6 +199,64 @@
     </div>
   </section>
 
+  <!-- ═══════════════════ TRAIL CONDITIONS ═══════════════════ -->
+  <section class="section" style="background: var(--surface-raised); padding-bottom: 2rem;">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">Live Updates</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Trail <span style="color:var(--brand);">Conditions</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">Updated by our team after every ride. Last checked: today.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem;" data-stagger-parent>
+
+        <div style="background:var(--surface-overlay);border:1px solid var(--border);border-radius:8px;padding:1.5rem;" data-stagger-child data-reveal="fade-up">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="font-family:Oswald,sans-serif;font-size:1rem;color:var(--heading-color);text-transform:uppercase;">Whinlatter</h3>
+            <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(34,197,94,0.15);color:#22c55e;">Good</span>
+          </div>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;margin-bottom:0.75rem;">Trails drying out nicely after last week's rain. Red route is grippy, berms are holding. A few puddles at the bottom of the Altura descent but nothing deep.</p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <span style="font-size:0.7rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+              Mostly Dry
+            </span>
+            <span style="font-size:0.7rem;color:var(--text-muted);">Updated 2h ago</span>
+          </div>
+        </div>
+
+        <div style="background:var(--surface-overlay);border:1px solid var(--border);border-radius:8px;padding:1.5rem;" data-stagger-child data-reveal="fade-up">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="font-family:Oswald,sans-serif;font-size:1rem;color:var(--heading-color);text-transform:uppercase;">Grizedale</h3>
+            <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(234,179,8,0.15);color:#eab308;">Fair</span>
+          </div>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;margin-bottom:0.75rem;">North Face trail has a few boggy sections mid-way. Blue route is fine. Watch for loose gravel on the fire road descent — council have been doing drainage work.</p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <span style="font-size:0.7rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+              Damp Patches
+            </span>
+            <span style="font-size:0.7rem;color:var(--text-muted);">Updated 5h ago</span>
+          </div>
+        </div>
+
+        <div style="background:var(--surface-overlay);border:1px solid var(--border);border-radius:8px;padding:1.5rem;" data-stagger-child data-reveal="fade-up">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+            <h3 style="font-family:Oswald,sans-serif;font-size:1rem;color:var(--heading-color);text-transform:uppercase;">Skiddaw</h3>
+            <span style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(239,68,68,0.15);color:#ef4444;">Caution</span>
+          </div>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.6;margin-bottom:0.75rem;">Summit still has snow patches above 800m. Slate sections are slick when wet. Ridgeline very exposed — strong winds forecast today. Experienced riders only.</p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <span style="font-size:0.7rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg>
+              Windy / Wet
+            </span>
+            <span style="font-size:0.7rem;color:var(--text-muted);">Updated 1h ago</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════ STRAVA COMMUNITY ═══════════════════ -->
   <section class="section" style="background: var(--surface-raised);">
     <div class="section-inner">
@@ -220,6 +278,7 @@
   <script src="js/nav.js" defer></script>
   <script src="js/trail-map.js" defer></script>
   <script src="js/strava.js" defer></script>
+  <script src="js/ui-extras.js" defer></script>
 
 </body>
 </html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events — Felltrax Cycles | Rides, Races & Workshops</title>
+  <meta name="description" content="Upcoming mountain bike events, group rides, workshops and races at Felltrax Cycles, Carlisle.">
+  <link rel="canonical" href="https://www.felltraxcycles.co.uk/events">
+
+  <meta property="og:title" content="Events — Felltrax Cycles">
+  <meta property="og:description" content="Upcoming mountain bike events, group rides, workshops and races.">
+  <meta property="og:image" content="images/hero-bg.jpg">
+  <meta property="og:url" content="https://www.felltraxcycles.co.uk/events">
+  <meta property="og:type" content="website">
+
+  <meta name="theme-color" content="#0A0A0A">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .event-card { display: grid; grid-template-columns: 100px 1fr auto; gap: 1.5rem; align-items: center; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; transition: transform 0.3s ease, border-color 0.3s ease; }
+    .event-card:hover { transform: translateY(-2px); border-color: var(--card-hover-border); }
+    @media (max-width: 640px) { .event-card { grid-template-columns: 1fr; text-align: center; } }
+    .event-date-box { text-align: center; }
+    .event-date-month { font-family: Oswald, sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brand); }
+    .event-date-day { font-family: Oswald, sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--heading-color); line-height: 1.1; }
+    .event-date-weekday { font-size: 0.75rem; color: var(--text-muted); }
+    .event-type { font-family: Oswald, sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem; border-radius: 3px; display: inline-block; margin-bottom: 0.5rem; }
+    .type-ride { background: rgba(var(--brand-rgb), 0.15); color: var(--brand); }
+    .type-race { background: rgba(220, 50, 50, 0.15); color: #E85555; }
+    .type-workshop { background: rgba(70, 130, 220, 0.15); color: #6BA3E8; }
+    .type-social { background: rgba(139, 105, 20, 0.2); color: #D4A830; }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <section class="page-header">
+    <p class="section-label" data-appear>What's On</p>
+    <h1 class="section-title" data-split="words">Events & <span style="color: var(--brand);">Rides</span></h1>
+    <p class="section-subtitle" data-appear data-appear-delay="0.2">Group rides, workshops, race days, and socials. Get involved with the Felltrax community.</p>
+  </section>
+
+  <section class="section" style="background: var(--surface-base); padding-top: 3rem;">
+    <div class="section-inner" style="max-width: 800px;">
+      <div style="display:flex;flex-direction:column;gap:1.5rem;" data-stagger-parent>
+
+        <!-- Event 1 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">17</div>
+            <div class="event-date-weekday">Thursday</div>
+          </div>
+          <div>
+            <span class="event-type type-ride">Group Ride</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Thursday Evening Ride — Whinlatter</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">All-abilities group ride. Meet at shop 6pm. ~20km, back by 8:30pm. No drop policy.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                18:00 – 20:30
+              </span>
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Felltrax Cycles
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">FREE</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">Sign Up</a>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">20</div>
+            <div class="event-date-weekday">Sunday</div>
+          </div>
+          <div>
+            <span class="event-type type-workshop">Workshop</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Suspension Setup Masterclass</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">Learn to set sag, adjust rebound/compression, and fine-tune your fork and shock. Bring your bike.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                10:00 – 12:00
+              </span>
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                8 spots left
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">£25</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">Book</a>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">24</div>
+            <div class="event-date-weekday">Thursday</div>
+          </div>
+          <div>
+            <span class="event-type type-ride">Group Ride</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Thursday Evening Ride — Grizedale</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">Slightly longer route this week. Blue/Red trails, good flow. ~25km. Lights recommended.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                18:00 – 21:00
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">FREE</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">Sign Up</a>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">May</div>
+            <div class="event-date-day">04</div>
+            <div class="event-date-weekday">Sunday</div>
+          </div>
+          <div>
+            <span class="event-type type-race">Race</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Felltrax Enduro — Whinlatter</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">Grassroots enduro race. 4 timed stages. Categories: Fun, Sport, Expert. Prizes + post-race BBQ.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                09:00 – 16:00
+              </span>
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                22 spots left
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">£35</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">Enter</a>
+        </div>
+
+        <!-- Event 5 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">May</div>
+            <div class="event-date-day">10</div>
+            <div class="event-date-weekday">Saturday</div>
+          </div>
+          <div>
+            <span class="event-type type-workshop">Workshop</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Trail-Side Repair Clinic</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">Learn to fix a puncture, adjust brakes, and get home when things go wrong. Essential skills for every rider.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                14:00 – 16:00
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">£15</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">Book</a>
+        </div>
+
+        <!-- Event 6 -->
+        <div class="event-card" data-stagger-child data-reveal="fade-up">
+          <div class="event-date-box">
+            <div class="event-date-month">May</div>
+            <div class="event-date-day">17</div>
+            <div class="event-date-weekday">Saturday</div>
+          </div>
+          <div>
+            <span class="event-type type-social">Social</span>
+            <h3 style="font-family:Oswald,sans-serif;font-size:1.2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.25rem;">Felltrax Film Night: Bikes & Beers</h3>
+            <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.6;">MTB film screening at the shop. Local ales, good company, and some of the best riding footage from the last 12 months.</p>
+            <div style="display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;">
+              <span style="font-size:0.75rem;color:var(--text-muted);display:flex;align-items:center;gap:0.3rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                19:00 – 22:00
+              </span>
+              <span style="font-size:0.75rem;color:var(--brand);font-weight:600;">FREE</span>
+            </div>
+          </div>
+          <a href="booking.html" class="btn-ghost" data-magnetic style="font-size:0.75rem;padding:0.5rem 1rem;white-space:nowrap;">RSVP</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/ui-extras.js" defer></script>
+
+</body>
+</html>
