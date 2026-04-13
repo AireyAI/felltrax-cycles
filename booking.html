@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking — Felltrax Cycles | Book a Service, Fitting or Repair</title>
+  <meta name="description" content="Book a bike service, fitting, suspension setup or repair at Felltrax Cycles, Carlisle. Easy online booking.">
+  <link rel="canonical" href="https://www.felltraxcycles.co.uk/booking">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Booking — Felltrax Cycles">
+  <meta property="og:description" content="Book a bike service, fitting, suspension setup or repair at Felltrax Cycles, Carlisle.">
+  <meta property="og:image" content="images/hero-bg.jpg">
+  <meta property="og:url" content="https://www.felltraxcycles.co.uk/booking">
+  <meta property="og:type" content="website">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+            mud: '#8B6914', moss: '#2D5016', rock: '#6B6B6B',
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <!-- Theme (before paint) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* Service type cards */
+    .service-card { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; text-align: center; }
+    .service-card:hover, .service-card.selected { transform: translateY(-4px); border-color: var(--brand); box-shadow: var(--shadow-brand); }
+    .service-card.selected { background: rgba(var(--brand-rgb), 0.05); }
+    .service-card:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+    .service-card svg { width: 40px; height: 40px; margin: 0 auto 1rem; color: var(--brand); }
+    .service-card h3 { font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: var(--heading-color); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .service-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .service-card .price { font-family: 'Oswald', sans-serif; font-size: 1.1rem; color: var(--brand); font-weight: 600; margin-top: 1rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+
+    /* Calendar */
+    .calendar { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .cal-header h3 { font-family: 'Oswald', sans-serif; font-size: 1.2rem; color: var(--heading-color); text-transform: uppercase; }
+    .cal-nav { background: none; border: 1px solid var(--border); color: var(--text-secondary); width: 36px; height: 36px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s, color 0.2s; }
+    .cal-nav:hover { border-color: var(--brand); color: var(--brand); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+    .cal-day-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 0.5rem 0; font-weight: 600; }
+    .cal-day { padding: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); border-radius: 6px; cursor: pointer; transition: background 0.15s, color 0.15s; border: none; background: none; }
+    .cal-day:hover { background: var(--surface-overlay); color: var(--heading-color); }
+    .cal-day.selected { background: var(--brand); color: #0A0A0A; font-weight: 700; }
+    .cal-day.disabled { color: var(--text-muted); opacity: 0.3; cursor: not-allowed; pointer-events: none; }
+    .cal-day.today { border: 1px solid var(--brand); }
+
+    /* Time slots */
+    .time-slots { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 0.5rem; margin-top: 1.5rem; }
+    .time-slot { background: var(--surface-overlay); border: 1px solid var(--border); border-radius: 6px; padding: 0.7rem; text-align: center; font-size: 0.9rem; color: var(--text-secondary); cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .time-slot:hover { border-color: var(--brand); color: var(--brand); }
+    .time-slot.selected { background: var(--brand); color: #0A0A0A; border-color: var(--brand); font-weight: 600; }
+    .time-slot.unavailable { opacity: 0.3; cursor: not-allowed; pointer-events: none; text-decoration: line-through; }
+
+    /* Booking steps */
+    .booking-step { display: none; }
+    .booking-step.active { display: block; }
+    .step-indicator { display: flex; gap: 1rem; margin-bottom: 3rem; justify-content: center; }
+    .step-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--surface-overlay); border: 2px solid var(--border); transition: background 0.3s, border-color 0.3s; }
+    .step-dot.active { background: var(--brand); border-color: var(--brand); }
+    .step-dot.completed { background: var(--brand); border-color: var(--brand); opacity: 0.5; }
+
+    /* Confirmation */
+    .confirmation-card { background: var(--surface-raised); border: 1px solid var(--brand); border-radius: 8px; padding: 3rem; text-align: center; max-width: 500px; margin: 0 auto; }
+    .confirmation-icon { width: 64px; height: 64px; background: rgba(var(--brand-rgb), 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .confirmation-icon svg { width: 32px; height: 32px; color: var(--brand); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav placeholder -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <section class="page-header">
+    <p class="section-label" data-appear>Book Online</p>
+    <h1 class="section-title" data-split="words">Book A <span style="color: var(--brand);">Service</span></h1>
+    <p class="section-subtitle" data-appear data-appear-delay="0.2">Fitting, servicing, suspension setup — pick your slot and we'll have you sorted.</p>
+  </section>
+
+  <!-- ═══════════════════ BOOKING SYSTEM ═══════════════════ -->
+  <section class="section" style="background: var(--surface-base);">
+    <div class="section-inner" style="max-width: 900px;">
+
+      <!-- Step indicator -->
+      <div class="step-indicator" data-reveal="fade-up">
+        <div class="step-dot active" data-step="1"></div>
+        <div class="step-dot" data-step="2"></div>
+        <div class="step-dot" data-step="3"></div>
+        <div class="step-dot" data-step="4"></div>
+      </div>
+
+      <!-- Step 1: Service Type -->
+      <div class="booking-step active" id="step1">
+        <h2 style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:1.5rem;text-align:center;" data-reveal="fade-up">Choose Your Service</h2>
+        <div class="services-grid" data-stagger-parent>
+          <div class="service-card" data-stagger-child data-service="fitting" tabindex="0" role="button" aria-label="Bike fitting service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            <h3>Bike Fitting</h3>
+            <p>Professional bike fit to maximise comfort, power, and handling on the trails.</p>
+            <div class="price">From £75</div>
+          </div>
+          <div class="service-card" data-stagger-child data-service="service" tabindex="0" role="button" aria-label="Full service">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <h3>Full Service</h3>
+            <p>Complete strip-down, clean, adjust and re-grease. Brakes, gears, bearings — the lot.</p>
+            <div class="price">From £120</div>
+          </div>
+          <div class="service-card" data-stagger-child data-service="suspension" tabindex="0" role="button" aria-label="Suspension setup">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+            <h3>Suspension Setup</h3>
+            <p>Dial in your fork and shock. Sag, rebound, compression — tailored to your weight and riding style.</p>
+            <div class="price">From £45</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2: Date & Time -->
+      <div class="booking-step" id="step2">
+        <h2 style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:1.5rem;text-align:center;">Pick A Date & Time</h2>
+        <div class="calendar" id="bookingCalendar">
+          <div class="cal-header">
+            <button class="cal-nav" id="calPrev" aria-label="Previous month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <h3 id="calMonth"></h3>
+            <button class="cal-nav" id="calNext" aria-label="Next month">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="cal-grid" id="calGrid">
+            <div class="cal-day-label">Mon</div>
+            <div class="cal-day-label">Tue</div>
+            <div class="cal-day-label">Wed</div>
+            <div class="cal-day-label">Thu</div>
+            <div class="cal-day-label">Fri</div>
+            <div class="cal-day-label">Sat</div>
+            <div class="cal-day-label">Sun</div>
+          </div>
+        </div>
+        <div id="timeSlotSection" style="display:none;">
+          <h3 style="font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--heading-color);text-transform:uppercase;margin-top:2rem;margin-bottom:0.5rem;">Available Times</h3>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
+      </div>
+
+      <!-- Step 3: Contact Details -->
+      <div class="booking-step" id="step3">
+        <h2 style="font-family:'Oswald',sans-serif;font-size:1.5rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:1.5rem;text-align:center;">Your Details</h2>
+        <form class="contact-form" id="bookingForm" style="max-width:500px;margin:0 auto;">
+          <div class="form-group">
+            <label for="bk-name">Name</label>
+            <input type="text" id="bk-name" class="form-input" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="bk-email">Email</label>
+            <input type="email" id="bk-email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="bk-phone">Phone</label>
+            <input type="tel" id="bk-phone" class="form-input" placeholder="07xxx xxx xxx" required autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label for="bk-bike">Bike Details</label>
+            <input type="text" id="bk-bike" class="form-input" placeholder="e.g. Specialized Stumpjumper 2024">
+          </div>
+          <div class="form-group">
+            <label for="bk-notes">Notes (optional)</label>
+            <textarea id="bk-notes" class="form-input" placeholder="Anything we should know?"></textarea>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 4: Confirmation -->
+      <div class="booking-step" id="step4">
+        <div class="confirmation-card">
+          <div class="confirmation-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 style="font-family:'Oswald',sans-serif;font-size:2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.75rem;">Booking Confirmed</h2>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;">We'll send a confirmation email shortly. See you at the workshop!</p>
+          <div id="bookingSummary" style="text-align:left;background:var(--surface-overlay);border-radius:6px;padding:1.5rem;font-size:0.9rem;color:var(--text-secondary);line-height:1.8;"></div>
+          <a href="index.html" class="btn-primary" data-magnetic style="margin-top:2rem;display:inline-flex;">Back To Home</a>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div style="display:flex;justify-content:space-between;margin-top:2rem;" id="stepNav">
+        <button class="btn-ghost" id="btnPrev" style="display:none;" data-magnetic>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn-primary" id="btnNext" data-magnetic style="margin-left:auto;">
+          Next
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/booking.js" defer></script>
+
+</body>
+</html>

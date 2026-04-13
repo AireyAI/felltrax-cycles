@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trails — Felltrax Cycles | Lake District Mountain Bike Trails</title>
+  <meta name="description" content="Explore the best mountain bike trails near Carlisle. Whinlatter, Grizedale, Skiddaw and more. Local knowledge from Felltrax Cycles.">
+  <link rel="canonical" href="https://www.felltraxcycles.co.uk/trails">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Trails — Felltrax Cycles">
+  <meta property="og:description" content="Explore the best mountain bike trails near Carlisle and the Lake District.">
+  <meta property="og:image" content="images/trail-whinlatter.jpg">
+  <meta property="og:url" content="https://www.felltraxcycles.co.uk/trails">
+  <meta property="og:type" content="website">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+            mud: '#8B6914', moss: '#2D5016', rock: '#6B6B6B',
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <!-- Theme (before paint) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .trail-detail { background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .trail-detail:hover { transform: translateY(-4px); box-shadow: var(--card-hover-shadow); }
+    .trail-detail-img { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+    .trail-detail-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .trail-detail:hover .trail-detail-img img { transform: scale(1.03); }
+    .trail-detail-body { padding: 2rem; }
+    .trail-stat { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--text-secondary); }
+    .trail-stat svg { width: 16px; height: 16px; color: var(--brand); flex-shrink: 0; }
+    .trail-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav placeholder -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <section class="page-header">
+    <p class="section-label" data-appear>Local Knowledge</p>
+    <h1 class="section-title" data-split="words">Trails On Our <span style="color: var(--brand);">Doorstep</span></h1>
+    <p class="section-subtitle" data-appear data-appear-delay="0.2">We ride these trails every week. Ask us for route tips, conditions, and the lines the locals know.</p>
+  </section>
+
+  <!-- ═══════════════════ INTERACTIVE TRAIL MAP ═══════════════════ -->
+  <section id="trail-map" class="section" style="background: var(--surface-base); padding-top: 3rem; padding-bottom: 2rem;">
+    <div class="section-inner">
+      <div id="trailMapBox" style="background: var(--surface-raised); border: 1px solid var(--border); border-radius: 8px; aspect-ratio: 16/7; overflow: hidden; position: relative;" data-reveal="fade-up">
+      </div>
+      <p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;">Click a marker to jump to trail details below</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TRAIL CARDS ═══════════════════ -->
+  <section class="section" style="background: var(--surface-base); padding-top: 2rem;">
+    <div class="section-inner">
+
+      <!-- Whinlatter -->
+      <div class="trail-detail" data-trail="whinlatter" data-reveal="fade-up" style="margin-bottom: 2rem;">
+        <div class="trail-detail-img">
+          <video autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="images/trail-whinlatter.jpg" style="width:100%;height:100%;object-fit:cover;">
+            <source src="images/trail-whinlatter-video.mp4" type="video/mp4">
+          </video>
+          <img src="images/trail-whinlatter.jpg" alt="Aerial view of Whinlatter Forest mountain bike trail" class="mobile-hero-fallback" loading="lazy" width="1200" height="675">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, var(--surface-raised) 0%, transparent 40%);"></div>
+        </div>
+        <div class="trail-detail-body">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+            <span class="trail-badge difficulty-red">Red Grade</span>
+            <span class="trail-badge info">19km</span>
+            <span class="trail-badge info">40 min drive</span>
+          </div>
+          <h2 style="font-family:'Oswald',sans-serif;font-size:2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.75rem;">Whinlatter Forest</h2>
+          <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">England's only true mountain forest. Purpose-built trails through stunning Lakeland scenery with technical rock sections, fast berms, and flowing singletrack. The Altura Trail is the main red-graded loop — expect roots, rocks, and big grins.</p>
+          <div class="trail-stats-grid">
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Purpose-built
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 19h20L12 2z"/></svg>
+              450m elevation
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              2-3 hours
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Intermediate+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grizedale -->
+      <div class="trail-detail" data-trail="grizedale" data-reveal="fade-up" style="margin-bottom: 2rem;">
+        <div class="trail-detail-img">
+          <video autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="images/trail-grizedale.jpg" style="width:100%;height:100%;object-fit:cover;">
+            <source src="images/trail-grizedale-video.mp4" type="video/mp4">
+          </video>
+          <img src="images/trail-grizedale.jpg" alt="Mountain biker riding through Grizedale Forest" class="mobile-hero-fallback" loading="lazy" width="1200" height="675">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, var(--surface-raised) 0%, transparent 40%);"></div>
+        </div>
+        <div class="trail-detail-body">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+            <span class="trail-badge difficulty-blue">Blue & Red</span>
+            <span class="trail-badge info">16km</span>
+            <span class="trail-badge info">55 min drive</span>
+          </div>
+          <h2 style="font-family:'Oswald',sans-serif;font-size:2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.75rem;">Grizedale Forest</h2>
+          <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">Deep in the heart of the Lake District between Windermere and Coniston. Mixed blue and red graded trails through ancient woodland. North Face Trail offers technical challenges while the easier routes suit riders building confidence.</p>
+          <div class="trail-stats-grid">
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Forestry trails
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 19h20L12 2z"/></svg>
+              380m elevation
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              1.5-2.5 hours
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              All levels
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skiddaw -->
+      <div class="trail-detail" data-trail="skiddaw" data-reveal="fade-up" style="margin-bottom: 2rem;">
+        <div class="trail-detail-img">
+          <video autoplay muted loop playsinline webkit-playsinline preload="metadata" poster="images/trail-skiddaw.jpg" style="width:100%;height:100%;object-fit:cover;">
+            <source src="images/trail-skiddaw-video.mp4" type="video/mp4">
+          </video>
+          <img src="images/trail-skiddaw.jpg" alt="Dramatic Skiddaw mountain landscape with trail" class="mobile-hero-fallback" loading="lazy" width="1200" height="675">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, var(--surface-raised) 0%, transparent 40%);"></div>
+        </div>
+        <div class="trail-detail-body">
+          <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+            <span class="trail-badge difficulty-black">Expert</span>
+            <span class="trail-badge info">Natural Trails</span>
+            <span class="trail-badge info">35 min drive</span>
+          </div>
+          <h2 style="font-family:'Oswald',sans-serif;font-size:2rem;color:var(--heading-color);text-transform:uppercase;margin-bottom:0.75rem;">Skiddaw</h2>
+          <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">Raw, natural, unforgiving. Skiddaw's backcountry lines reward strong riders with some of the most dramatic descents in the Lakes. Loose slate, exposed ridgelines, and views that make the lung-busting climb worth every pedal stroke.</p>
+          <div class="trail-stats-grid">
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              Natural trails
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 19h20L12 2z"/></svg>
+              931m summit
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              3-5 hours
+            </div>
+            <div class="trail-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Expert only
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STRAVA COMMUNITY ═══════════════════ -->
+  <section class="section" style="background: var(--surface-raised);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">Community</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">Strava <span style="color:var(--brand);">Segments</span></h2>
+      <p class="section-subtitle" data-reveal="fade-up" data-reveal-delay="0.2">Popular segments and recent rides from the local community.</p>
+      <div id="stravaContent" data-reveal="fade-up" data-reveal-delay="0.3"></div>
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/trail-map.js" defer></script>
+  <script src="js/strava.js" defer></script>
+
+</body>
+</html>

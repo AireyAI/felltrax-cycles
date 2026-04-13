@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Felltrax Cycles | Mountain Bikes, Carlisle</title>
+  <meta name="description" content="Browse our full range of trail, enduro, downhill and e-MTB mountain bikes. Felltrax Cycles, Carlisle.">
+  <link rel="canonical" href="https://www.felltraxcycles.co.uk/shop">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Shop — Felltrax Cycles">
+  <meta property="og:description" content="Browse our full range of trail, enduro, downhill and e-MTB mountain bikes.">
+  <meta property="og:image" content="images/hero-bg.jpg">
+  <meta property="og:url" content="https://www.felltraxcycles.co.uk/shop">
+  <meta property="og:type" content="website">
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+            mud: '#8B6914', moss: '#2D5016', rock: '#6B6B6B',
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <!-- Theme (before paint) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Nav placeholder -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+  <section class="page-header">
+    <p class="section-label" data-appear>Our Range</p>
+    <h1 class="section-title" data-split="words">Built For Every <span style="color: var(--brand);">Trail</span></h1>
+    <p class="section-subtitle" data-appear data-appear-delay="0.2">From flowing singletrack to gnarly downhill. We stock bikes that handle whatever the fells throw at you.</p>
+  </section>
+
+  <!-- ═══════════════════ FILTER BAR ═══════════════════ -->
+  <section class="section" style="background: var(--surface-base); padding-top: 3rem;">
+    <div class="section-inner">
+
+      <!-- Category filters -->
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem;" data-reveal="fade-up">
+        <button class="filter-btn active" data-filter="all" data-magnetic>All Bikes</button>
+        <button class="filter-btn" data-filter="trail" data-magnetic>Trail</button>
+        <button class="filter-btn" data-filter="enduro" data-magnetic>Enduro</button>
+        <button class="filter-btn" data-filter="downhill" data-magnetic>Downhill</button>
+        <button class="filter-btn" data-filter="emtb" data-magnetic>E-MTB</button>
+      </div>
+
+      <style>
+        .filter-btn { background: var(--surface-overlay); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.6rem 1.5rem; font-family: 'Oswald', sans-serif; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.15s; }
+        .filter-btn:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-2px); }
+        .filter-btn.active { background: var(--brand); color: #0A0A0A; border-color: var(--brand); }
+        .filter-btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+        .bike-card[data-hidden] { display: none; }
+      </style>
+
+      <!-- Bikes grid (will be populated by shop.js) -->
+      <div class="bikes-grid" id="shopGrid" data-stagger-parent>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/shop.js" defer></script>
+
+</body>
+</html>

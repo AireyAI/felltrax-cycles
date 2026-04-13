@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Product — Felltrax Cycles</title>
+  <meta name="description" id="pageDesc" content="Mountain bike product details — Felltrax Cycles, Carlisle.">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#C4FF2B', 'brand-dark': '#9ACC1A', 'brand-light': '#D6FF6B',
+            fell: { 950:'#0A0A0A',900:'#111111',850:'#161616',800:'#1A1A1A',700:'#242424',600:'#333333',500:'#555555',400:'#777777',300:'#999999',200:'#BBBBBB',100:'#E0E0E0' },
+            mud: '#8B6914', moss: '#2D5016', rock: '#6B6B6B',
+          },
+          fontFamily: { display: ['Oswald','sans-serif'], body: ['DM Sans','sans-serif'] },
+        },
+      },
+    }
+  </script>
+
+  <!-- Theme (before paint) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Three.js for 3D viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <style>
+    /* Product layout */
+    .product-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+    @media (max-width: 900px) { .product-grid { grid-template-columns: 1fr; } }
+
+    /* Image gallery */
+    .product-image-main { position: relative; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; background: var(--surface-raised); border: 1px solid var(--border); }
+    .product-image-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .product-image-main:hover img { transform: scale(1.03); }
+
+    /* 3D viewer toggle */
+    .viewer-toggle { position: absolute; bottom: 1rem; right: 1rem; z-index: 5; display: flex; gap: 0.5rem; }
+    .viewer-btn { background: var(--surface-overlay); border: 1px solid var(--border); color: var(--text-secondary); padding: 0.5rem 1rem; font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; backdrop-filter: blur(8px); border-radius: 4px; }
+    .viewer-btn:hover, .viewer-btn.active { border-color: var(--brand); color: var(--brand); }
+    .viewer-btn.active { background: rgba(var(--brand-rgb), 0.1); }
+
+    /* 3D canvas */
+    #bikeViewer { position: absolute; inset: 0; z-index: 2; display: none; background: var(--surface-raised); border-radius: 8px; }
+    #bikeViewer.active { display: block; }
+    #bikeViewer canvas { width: 100% !important; height: 100% !important; border-radius: 8px; }
+
+    /* Product info */
+    .product-category { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand); margin-bottom: 0.5rem; }
+    .product-name { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--heading-color); text-transform: uppercase; margin-bottom: 0.75rem; line-height: 1.1; }
+    .product-price { font-family: 'Oswald', sans-serif; font-size: 1.75rem; color: var(--brand); font-weight: 700; margin-bottom: 0.25rem; }
+    .product-price-suffix { font-size: 0.9rem; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+    .product-desc { color: var(--text-secondary); line-height: 1.7; margin: 1.5rem 0 2rem; font-size: 1rem; }
+
+    /* Spec table */
+    .spec-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    .spec-table tr { border-bottom: 1px solid var(--border); }
+    .spec-table td { padding: 0.85rem 0; font-size: 0.9rem; }
+    .spec-table td:first-child { color: var(--text-muted); font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; width: 40%; }
+    .spec-table td:last-child { color: var(--heading-color); font-weight: 500; }
+
+    /* Sizing chart */
+    .sizing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 1.5rem 0; }
+    .size-option { background: var(--surface-overlay); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .size-option:hover, .size-option.selected { border-color: var(--brand); color: var(--brand); }
+    .size-option.selected { background: rgba(var(--brand-rgb), 0.05); }
+    .size-label { font-family: 'Oswald', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--heading-color); text-transform: uppercase; }
+    .size-range { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+    /* Related bikes */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+
+    /* Breadcrumb */
+    .breadcrumb { display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; flex-wrap: wrap; }
+    .breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--brand); }
+    .breadcrumb svg { width: 14px; height: 14px; opacity: 0.5; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav placeholder -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ═══════════════════ PRODUCT CONTENT ═══════════════════ -->
+  <section class="section" style="background: var(--surface-base); padding-top: 7rem;">
+    <div class="section-inner">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-reveal="fade-up">
+        <a href="index.html">Home</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <a href="shop.html">Shop</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        <span id="breadcrumbName" style="color: var(--heading-color);">Loading...</span>
+      </nav>
+
+      <div class="product-grid">
+        <!-- Left: Image / 3D viewer -->
+        <div>
+          <div class="product-image-main" data-reveal="fade-up" id="productImageWrap">
+            <img id="productImage" src="images/hero-bg.jpg" alt="Loading bike..." loading="eager">
+            <div id="bikeViewer"></div>
+            <div class="viewer-toggle">
+              <button class="viewer-btn active" id="btnPhoto" aria-label="View photo">Photo</button>
+              <button class="viewer-btn" id="btn3D" aria-label="View 3D model">3D View</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Product info -->
+        <div data-reveal="fade-up" data-reveal-delay="0.15">
+          <p class="product-category" id="productCategory">Loading...</p>
+          <h1 class="product-name" id="productName">Loading...</h1>
+          <p class="product-price" id="productPrice">—</p>
+          <p class="product-price-suffix" id="productPriceSuffix"></p>
+          <p class="product-desc" id="productDesc"></p>
+
+          <!-- Sizing -->
+          <h3 style="font-family:'Oswald',sans-serif;font-size:0.9rem;color:var(--heading-color);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Select Size</h3>
+          <div class="sizing-grid" id="sizingGrid">
+            <div class="size-option" data-size="S" tabindex="0">
+              <div class="size-label">S</div>
+              <div class="size-range">155-165cm</div>
+            </div>
+            <div class="size-option selected" data-size="M" tabindex="0">
+              <div class="size-label">M</div>
+              <div class="size-range">165-175cm</div>
+            </div>
+            <div class="size-option" data-size="L" tabindex="0">
+              <div class="size-label">L</div>
+              <div class="size-range">175-185cm</div>
+            </div>
+            <div class="size-option" data-size="XL" tabindex="0">
+              <div class="size-label">XL</div>
+              <div class="size-range">185-195cm</div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;margin:2rem 0;">
+            <a href="booking.html" class="btn-primary" data-magnetic>
+              Enquire Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </a>
+            <a href="tel:+441234567890" class="btn-ghost" data-magnetic>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Us
+            </a>
+          </div>
+
+          <!-- Specs -->
+          <h3 style="font-family:'Oswald',sans-serif;font-size:0.9rem;color:var(--heading-color);text-transform:uppercase;letter-spacing:0.05em;margin-top:2rem;">Specifications</h3>
+          <table class="spec-table" id="specTable">
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ RELATED BIKES ═══════════════════ -->
+  <section class="section" style="background: var(--surface-raised);">
+    <div class="section-inner">
+      <p class="section-label" data-reveal="fade-up">You Might Also Like</p>
+      <h2 class="section-title" data-reveal="fade-up" data-reveal-delay="0.1">More <span style="color: var(--brand);">Bikes</span></h2>
+      <div class="related-grid" id="relatedGrid" data-stagger-parent></div>
+    </div>
+  </section>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="animations.js" defer></script>
+  <script src="js/includes.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/product.js" defer></script>
+  <script src="js/bike-viewer.js" defer></script>
+
+</body>
+</html>
