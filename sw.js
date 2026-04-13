@@ -2,7 +2,7 @@
  * Felltrax Cycles — Service Worker
  * Caches static assets for offline support and faster loads.
  */
-var CACHE_NAME = 'felltrax-v1';
+var CACHE_NAME = 'felltrax-v2';
 var ASSETS = [
   '/',
   '/index.html',

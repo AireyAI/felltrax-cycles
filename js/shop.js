@@ -21,20 +21,25 @@
     card.setAttribute('role', 'article');
     card.setAttribute('aria-label', bike.name);
 
+    var conditionColor = bike.condition === 'Brand New' ? '#C4FF2B' : bike.condition === 'As New' ? '#7CFC00' : bike.condition === 'Immaculate' || bike.condition === 'Amazing' ? '#00CED1' : '#aaa';
+
     card.innerHTML =
       '<div class="bike-card-img">' +
         '<img src="' + bike.image + '" alt="' + bike.alt + '" loading="lazy" width="800" height="600">' +
+        (bike.condition ? '<span style="position:absolute;top:0.75rem;left:0.75rem;background:' + conditionColor + ';color:#0A0A0A;font-family:Oswald,sans-serif;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:0.25rem 0.6rem;border-radius:3px;">' + bike.condition + '</span>' : '') +
+        (bike.size ? '<span style="position:absolute;top:0.75rem;right:0.75rem;background:rgba(0,0,0,0.7);color:#fff;font-family:Oswald,sans-serif;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:0.25rem 0.5rem;border-radius:3px;backdrop-filter:blur(4px);">Size ' + bike.size + '</span>' : '') +
       '</div>' +
       '<div class="bike-card-body">' +
         '<p class="bike-card-category">' + bike.categoryLabel + '</p>' +
         '<h3 class="bike-card-name">' + bike.name + '</h3>' +
         '<p class="bike-card-desc">' + bike.desc + '</p>' +
-        '<div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">' +
-          '<span style="font-size:0.75rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.25rem 0.6rem;border-radius:4px;">' + bike.travel + '</span>' +
-          '<span style="font-size:0.75rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.25rem 0.6rem;border-radius:4px;">' + bike.wheel + '</span>' +
-          '<span style="font-size:0.75rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.25rem 0.6rem;border-radius:4px;">' + bike.weight + '</span>' +
+        '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">' +
+          '<span style="font-size:0.7rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.2rem 0.5rem;border-radius:4px;">' + bike.travel + '</span>' +
+          '<span style="font-size:0.7rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.2rem 0.5rem;border-radius:4px;">' + bike.wheel + '</span>' +
+          '<span style="font-size:0.7rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.2rem 0.5rem;border-radius:4px;">' + bike.weight + '</span>' +
+          '<span style="font-size:0.7rem;color:var(--text-muted);background:var(--surface-overlay);padding:0.2rem 0.5rem;border-radius:4px;">' + bike.groupset + '</span>' +
         '</div>' +
-        '<p class="bike-card-price">' + bike.priceLabel + ' <span>' + bike.priceSuffix + '</span></p>' +
+        '<p class="bike-card-price">' + bike.priceLabel + (bike.priceSuffix ? ' <span>' + bike.priceSuffix + '</span>' : '') + '</p>' +
         '<button class="compare-toggle" data-compare="' + bike.id + '" aria-label="Add to comparison" style="background:var(--surface-overlay);border:1px solid var(--border);color:var(--text-muted);padding:0.4rem 0.8rem;font-family:Oswald,sans-serif;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.4rem;">' +
           '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>' +
           'Compare' +

@@ -31,16 +31,27 @@
       document.getElementById('productPriceSuffix').textContent = bike.priceSuffix;
       document.getElementById('productDesc').textContent = bike.desc;
 
+      // Condition & size badges
+      var conditionEl = document.getElementById('productCondition');
+      if (conditionEl && bike.condition) {
+        conditionEl.textContent = bike.condition;
+        conditionEl.style.display = 'inline-block';
+      }
+      var sizeEl = document.getElementById('productSize');
+      if (sizeEl && bike.size) {
+        sizeEl.textContent = 'Size ' + bike.size;
+        sizeEl.style.display = 'inline-block';
+      }
+
       // Specs table
       var specs = [
+        ['Condition', bike.condition || 'Used'],
+        ['Size', bike.size || 'See description'],
         ['Travel', bike.travel],
         ['Wheel Size', bike.wheel],
         ['Weight', bike.weight],
         ['Groupset', bike.groupset],
-        ['Category', bike.categoryLabel],
-        ['Frame', bike.price > 3000 ? 'Full Carbon' : bike.price > 2500 ? 'Carbon Front / Alloy Rear' : 'Alloy'],
-        ['Brakes', bike.price > 3000 ? '4-Piston Hydraulic' : '2-Piston Hydraulic'],
-        ['Dropper Post', bike.category === 'downhill' ? 'N/A' : 'Yes — 150-200mm']
+        ['Category', bike.categoryLabel]
       ];
 
       var tbody = document.querySelector('#specTable tbody');
