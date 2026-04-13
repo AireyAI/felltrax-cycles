@@ -1,6 +1,6 @@
 /**
  * Felltrax Cycles — Shop Page
- * Loads bikes from JSON, renders grid, handles category filtering.
+ * Loads bikes from JSON, renders grid, handles brand filtering.
  */
 (function () {
   'use strict';
@@ -14,7 +14,7 @@
   function createCard(bike) {
     var card = document.createElement('div');
     card.className = 'bike-card';
-    card.setAttribute('data-category', bike.category);
+    card.setAttribute('data-brand', bike.brand);
     card.setAttribute('data-stagger-child', '');
     card.setAttribute('data-tilt', '');
     card.setAttribute('tabindex', '0');
@@ -30,7 +30,7 @@
         (bike.size ? '<span style="position:absolute;top:0.75rem;right:0.75rem;background:rgba(0,0,0,0.7);color:#fff;font-family:Oswald,sans-serif;font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;padding:0.25rem 0.5rem;border-radius:3px;backdrop-filter:blur(4px);">Size ' + bike.size + '</span>' : '') +
       '</div>' +
       '<div class="bike-card-body">' +
-        '<p class="bike-card-category">' + bike.categoryLabel + '</p>' +
+        '<p class="bike-card-category">' + bike.brand + '</p>' +
         '<h3 class="bike-card-name">' + bike.name + '</h3>' +
         '<p class="bike-card-desc">' + bike.desc + '</p>' +
         '<div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;">' +
@@ -59,13 +59,38 @@
 
   function renderBikes() {
     grid.innerHTML = '';
-    var filtered = activeFilter === 'all' ? bikes : bikes.filter(function (b) { return b.category === activeFilter; });
+    var filtered = activeFilter === 'all' ? bikes : bikes.filter(function (b) { return b.brand === activeFilter; });
     filtered.forEach(function (bike) {
       grid.appendChild(createCard(bike));
     });
 
     // Re-init GSAP animations for new cards
     if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+
+  function buildFilterButtons(brands) {
+    var filterWrap = document.getElementById('brandFilters');
+    if (!filterWrap) return;
+
+    // "All Bikes" button
+    var allBtn = document.createElement('button');
+    allBtn.className = 'filter-btn active';
+    allBtn.setAttribute('data-filter', 'all');
+    allBtn.setAttribute('data-magnetic', '');
+    allBtn.textContent = 'All Bikes';
+    filterWrap.appendChild(allBtn);
+
+    // One button per brand, sorted alphabetically
+    brands.sort().forEach(function (brand) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-filter', brand);
+      btn.setAttribute('data-magnetic', '');
+      btn.textContent = brand;
+      filterWrap.appendChild(btn);
+    });
+
+    bindFilters();
   }
 
   function bindFilters() {
@@ -84,8 +109,14 @@
     .then(function (r) { return r.json(); })
     .then(function (data) {
       bikes = data;
+
+      // Extract unique brands
+      var brandSet = {};
+      bikes.forEach(function (b) { brandSet[b.brand] = true; });
+      var brands = Object.keys(brandSet);
+
+      buildFilterButtons(brands);
       renderBikes();
-      bindFilters();
     })
     .catch(function (err) {
       console.error('Failed to load bike data:', err);

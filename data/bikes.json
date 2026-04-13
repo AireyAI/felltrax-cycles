@@ -2,6 +2,7 @@
   {
     "id": "amflow-pl-pro",
     "name": "Amflow PL Pro",
+    "brand": "Amflow",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 5999,
@@ -20,6 +21,7 @@
   {
     "id": "amflow-pl-pro-enduro",
     "name": "Amflow PL Pro Enduro",
+    "brand": "Amflow",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 6299,
@@ -38,6 +40,7 @@
   {
     "id": "amflow-pl-silver",
     "name": "Amflow PL Silver",
+    "brand": "Amflow",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 4950,
@@ -56,6 +59,7 @@
   {
     "id": "amflow-pl-carbon-xl",
     "name": "Amflow PL Carbon XL",
+    "brand": "Amflow",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 5300,
@@ -74,6 +78,7 @@
   {
     "id": "yeti-160e-2024",
     "name": "Yeti 160 E 2024",
+    "brand": "Yeti",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 5599,
@@ -92,6 +97,7 @@
   {
     "id": "moustache-game-race-160",
     "name": "Moustache Game Race 160.9",
+    "brand": "Moustache",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 6399,
@@ -110,6 +116,7 @@
   {
     "id": "santa-cruz-heckler-cc",
     "name": "Santa Cruz Heckler CC 2024",
+    "brand": "Santa Cruz",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 4200,
@@ -128,6 +135,7 @@
   {
     "id": "pivot-shuttle-sl",
     "name": "Pivot Shuttle SL XO1",
+    "brand": "Pivot",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 4200,
@@ -146,6 +154,7 @@
   {
     "id": "yeti-e160-2023",
     "name": "Yeti E160 2023",
+    "brand": "Yeti",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 3800,
@@ -164,6 +173,7 @@
   {
     "id": "moustache-game-160-7",
     "name": "Moustache Game 160.7",
+    "brand": "Moustache",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 3800,
@@ -182,6 +192,7 @@
   {
     "id": "mondraker-crafty-xr",
     "name": "Mondraker Crafty XR 2024",
+    "brand": "Mondraker",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 3800,
@@ -200,6 +211,7 @@
   {
     "id": "specialized-kenevo-sl",
     "name": "Specialized Kenevo SL Expert",
+    "brand": "Specialized",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 2599,
@@ -218,6 +230,7 @@
   {
     "id": "moustache-game-150",
     "name": "Moustache Game 150.8",
+    "brand": "Moustache",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 3400,
@@ -236,6 +249,7 @@
   {
     "id": "vitus-sommet-ebike",
     "name": "Vitus Sommet E-Bike",
+    "brand": "Vitus",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 1899,
@@ -254,6 +268,7 @@
   {
     "id": "rocky-mountain-altitude",
     "name": "Rocky Mountain Altitude Powerplay",
+    "brand": "Rocky Mountain",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 2450,
@@ -272,6 +287,7 @@
   {
     "id": "santa-cruz-bullit-cc",
     "name": "Santa Cruz Bullit CC 2022",
+    "brand": "Santa Cruz",
     "category": "emtb",
     "categoryLabel": "Electric",
     "price": 3400,
@@ -290,6 +306,7 @@
   {
     "id": "ibis-ripmo-af",
     "name": "Ibis Ripmo AF Rose 2026",
+    "brand": "Ibis",
     "category": "trail",
     "categoryLabel": "Trail",
     "price": 3070,
@@ -308,6 +325,7 @@
   {
     "id": "whyte-t140-rs",
     "name": "Whyte T-140 RS 2025",
+    "brand": "Whyte",
     "category": "trail",
     "categoryLabel": "Trail",
     "price": 1550,
@@ -326,6 +344,7 @@
   {
     "id": "specialized-stumpjumper",
     "name": "Specialized Stumpjumper",
+    "brand": "Specialized",
     "category": "trail",
     "categoryLabel": "Trail",
     "price": 1399,
@@ -344,6 +363,7 @@
   {
     "id": "marin-rift-zone",
     "name": "Marin Rift Zone 2023",
+    "brand": "Marin",
     "category": "trail",
     "categoryLabel": "Trail",
     "price": 1250,
@@ -362,6 +382,7 @@
   {
     "id": "santa-cruz-nomad",
     "name": "Santa Cruz Nomad C S 2024",
+    "brand": "Santa Cruz",
     "category": "enduro",
     "categoryLabel": "Enduro",
     "price": 2850,
@@ -380,6 +401,7 @@
   {
     "id": "nukeproof-giga",
     "name": "Nukeproof Giga Dream Build",
+    "brand": "Nukeproof",
     "category": "enduro",
     "categoryLabel": "Enduro",
     "price": 2550,
@@ -398,6 +420,7 @@
   {
     "id": "mondraker-raze-r",
     "name": "Mondraker Raze R 2023",
+    "brand": "Mondraker",
     "category": "enduro",
     "categoryLabel": "Enduro",
     "price": 1800,
@@ -416,6 +439,7 @@
   {
     "id": "orange-switch",
     "name": "Orange Switch 2021",
+    "brand": "Orange",
     "category": "enduro",
     "categoryLabel": "Enduro",
     "price": 1550,
